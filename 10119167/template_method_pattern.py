@@ -1,10 +1,13 @@
 # pola behavioral
+# Penerapan Pola Desain "Template Method" (Pola Behavioral)
 
+# Kelas SpeedTestTemplate merupakan kelas abstrak yang mendefinisikan template untuk melakukan tes kecepatan.
+# Template method run_test() akan memanggil langkah-langkah yang telah ditentukan, yaitu setup_test(), execute_test(), dan teardown_test().
 class SpeedTestTemplate:
     def run_test(self):
-        self.setup_test()
-        self.execute_test()
-        self.teardown_test()
+        self.setup_test()    # Langkah persiapan sebelum menjalankan tes.
+        self.execute_test()  # Langkah eksekusi atau pengukuran.
+        self.teardown_test() # Langkah penyelesaian atau pembersihan setelah tes selesai.
 
     def setup_test(self):
         pass
@@ -14,6 +17,8 @@ class SpeedTestTemplate:
 
     def teardown_test(self):
         pass
+
+# Kelas-kelas berikut merupakan turunan dari SpeedTestTemplate yang mengimplementasikan langkah-langkah tes spesifik.
 
 class KecepatanTest(SpeedTestTemplate):
     def setup_test(self):
@@ -55,15 +60,16 @@ class LatencyTest(SpeedTestTemplate):
     def teardown_test(self):
         print("Selesai mengukur latency.")
 
-# penggunaan
+# Penggunaan Pola Desain "Template Method" di atas:
+
+# Membuat objek-objek tes dengan berbagai jenis.
 kecepatan_test = KecepatanTest()
-kecepatan_test.run_test()
-
 ping_test = PingTest()
-ping_test.run_test()
-
 jitter_test = JitterTest()
-jitter_test.run_test()
-
 latency_test = LatencyTest()
+
+# Menjalankan tes dengan memanggil metode run_test() pada setiap objek tes.
+kecepatan_test.run_test()
+ping_test.run_test()
+jitter_test.run_test()
 latency_test.run_test()
